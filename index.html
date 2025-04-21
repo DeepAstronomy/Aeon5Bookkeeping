@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeon5 Bookkeeping | Simplify Your Business Finances</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /*-----------------------------------*\
+         * #CUSTOM PROPERTIES & RESET
+        \*-----------------------------------*/
+
+        :root {
+            /* Colors (Light Mode) */
+            --bg-primary-light: #FFFFFF;
+            --bg-secondary-light: #F8F9FA; /* Slightly off-white for sections */
+            --text-primary-light: #334155; /* Dark Slate */
+            --text-secondary-light: #64748B; /* Lighter Slate */
+            --heading-light: #0A192F; /* Navy */
+            --accent-light: #64FFDA; /* Neon Green */
+            --accent-darker-light: #4cc9b0; /* Darker Neon Green for hover */
+            --border-light: #E2E8F0; /* Light border */
+            --card-shadow-light: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --button-text-light: #0A192F; /* Navy text on accent buttons */
+
+            /* Colors (Dark Mode - Initial values same as light, overridden by .dark-mode) */
+            --bg-primary-dark: #0A192F; /* Navy */
+            --bg-secondary-dark: #1E293B; /* Dark Slate */
+            --text-primary-dark: #F8F8F8; /* Light Gray/White */
+            --text-secondary-dark: #94A3B8; /* Lighter Slate for dark */
+            --heading-dark: #FFFFFF; /* White */
+            --accent-dark: #64FFDA; /* Neon Green */
+            --accent-darker-dark: #8affea; /* Lighter Neon Green for hover */
+            --border-dark: #334155; /* Darker border */
+            --card-shadow-dark: 0 4px 6px -1px rgb(99 255 218 / 0.1), 0 2px 4px -2px rgb(99 255 218 / 0.1);
+            --button-text-dark: #0A192F; /* Navy text on accent buttons */
+
+            /* Assign default theme (light) */
+            --bg-primary: var(--bg-primary-light);
+            --bg-secondary: var(--bg-secondary-light);
+            --text-primary: var(--text-primary-light);
+            --text-secondary: var(--text-secondary-light);
+            --heading-color: var(--heading-light);
+            --accent-color: var(--accent-light);
+            --accent-darker: var(--accent-darker-light);
+            --border-color: var(--border-light);
+            --card-shadow: var(--card-shadow-light);
+            --button-text-color: var(--button-text-light);
+
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+
+            /* Spacing */
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+            --spacing-xxl: 6rem;
+
+            /* Other */
+            --border-radius: 8px;
+            --transition-speed: 0.3s ease;
+            --container-width: 1140px;
+            --header-height: 70px;
+        }
+
+        /* Dark mode overrides */
+        body.dark-mode {
+            --bg-primary: var(--bg-primary-dark);
+            --bg-secondary: var(--bg-secondary-dark);
+            --text-primary: var(--text-primary-dark);
+            --text-secondary: var(--text-secondary-dark);
+            --heading-color: var(--heading-dark);
+            --accent-color: var(--accent-dark);
+            --accent-darker: var(--accent-darker-dark);
+            --border-color: var(--border-dark);
+            --card-shadow: var(--card-shadow-dark);
+            --button-text-color: var(--button-text-dark);
+        }
+
+        /* Basic Reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px; /* Base font size */
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Apply body font size adjustment for smaller screens */
+        @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+        }
+         @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--heading-color);
+            line-height: 1.3;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        h1 { font-size: 2.8rem; font-weight: 700; }
+        h2 { font-size: 2.2rem; text-align: center; margin-bottom: var(--spacing-lg); }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.2rem; }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--accent-darker);
+        }
+
+        img, iframe {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-sm) var(--spacing-md);
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        /* Alternate section background */
+        section:nth-of-type(even) {
+             background-color: var(--bg-secondary);
+        }
+        /* Ensure hero section has primary background */
+        #hero {
+            background-color: var(--bg-primary);
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md); /* Add horizontal padding */
+        }
+
+        /*-----------------------------------*\
+         * #HEADER & NAVIGATION
+        \*-----------------------------------*/
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--bg-primary);
+            box-shadow: var(--card-shadow);
+            z-index: 1000;
+            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+         .logo span {
+            color: var(--accent-color);
+         }
+
+
+        .main-nav ul {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-nav li {
+            margin-left: var(--spacing-lg);
+        }
+
+        .main-nav a {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            font-weight: 600;
+            padding: var(--spacing-sm) 0;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed);
+        }
+
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .theme-toggle-btn,
+        .mobile-nav-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: var(--spacing-sm);
+            margin-left: var(--spacing-md);
+        }
+
+        .mobile-nav-toggle {
+            display: none; /* Hidden on desktop */
+        }
+
+        /* Mobile Navigation Styles */
+        @media (max-width: 768px) {
+            .main-nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                align-items: center;
+                padding: var(--spacing-lg) 0;
+                box-shadow: var(--card-shadow);
+                transform: translateY(-150%); /* Start hidden */
+                transition: transform 0.4s ease-in-out, background-color var(--transition-speed);
+                z-index: 999; /* Below header */
+            }
+
+            .main-nav.active {
+                transform: translateY(0);
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .main-nav li {
+                margin: var(--spacing-md) 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            .main-nav a {
+                 display: block; /* Make links take full width */
+                 padding: var(--spacing-md) 0;
+            }
+             .main-nav a::after { /* Center underline on mobile */
+                left: 50%;
+                transform: translateX(-50%);
+            }
+             .main-nav a:hover::after,
+             .main-nav a.active::after {
+                width: 50%; /* Adjust underline width */
+            }
+
+
+            .mobile-nav-toggle {
+                display: block; /* Show hamburger */
+                z-index: 1001; /* Ensure it's clickable */
+            }
+
+            .theme-toggle-btn {
+                 margin-left: 0; /* Remove margin when nav is collapsed */
+                 margin-right: var(--spacing-md); /* Add some space before hamburger */
+            }
+        }
+
+
+        /*-----------------------------------*\
+         * #HERO SECTION
+        \*-----------------------------------*/
+
+        #hero {
+            padding-top: calc(var(--header-height) + var(--spacing-xl)); /* Account for fixed header */
+            padding-bottom: var(--spacing-xxl);
+            text-align: center;
+        }
+
+        #hero .container {
+            max-width: 800px; /* Constrain hero text width */
+        }
+
+        #hero h1 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--button-text-color);
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            display: inline-block; /* Needed for margin auto */
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-darker);
+            transform: translateY(-2px);
+            color: var(--button-text-color); /* Ensure text color remains */
+        }
+
+        /*-----------------------------------*\
+         * #FEATURES SECTION
+        \*-----------------------------------*/
+
+        #features .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .feature-item {
+            background-color: var(--bg-primary); /* Use primary for cards on secondary bg */
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            border: 1px solid var(--border-color);
+        }
+         body.dark-mode #features .feature-item {
+             background-color: var(--bg-secondary); /* Use secondary for cards on primary bg in dark mode */
+         }
+
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+         body.dark-mode .feature-item:hover {
+             box-shadow: 0 10px 15px -3px rgb(99 255 218 / 0.1), 0 4px 6px -4px rgb(99 255 218 / 0.1);
+         }
+
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-item h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /*-----------------------------------*\
+         * #PROCESS SECTION
+        \*-----------------------------------*/
+
+        #process .process-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+            position: relative; /* For the connecting line */
+        }
+
+        /* Add a connecting line (optional visual) */
+        #process .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 35px; /* Adjust vertical position based on icon/number size */
+            left: 10%; /* Start after the first item */
+            right: 10%; /* End before the last item */
+            height: 2px;
+            background-color: var(--border-color);
+            z-index: 0;
+        }
+
+
+        .process-step {
+            flex: 1;
+            text-align: center;
+            padding: var(--spacing-md);
+            position: relative; /* Ensure content is above the line */
+            z-index: 1;
+            background-color: var(--bg-secondary); /* Match section background */
+        }
+         body.dark-mode #process .process-step {
+             background-color: var(--bg-primary); /* Match section background */
+         }
+
+        .step-number {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: var(--button-text-color);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            position: relative; /* Ensure number is above line */
+            z-index: 1;
+            border: 4px solid var(--bg-secondary); /* Create cutout effect */
+        }
+         body.dark-mode .step-number {
+             border-color: var(--bg-primary);
+         }
+
+
+        .process-step h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Responsive Process Steps */
+        @media (max-width: 768px) {
+            #process .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+             #process .process-steps::before {
+                 /* Hide horizontal line on mobile */
+                display: none;
+            }
+            .process-step {
+                max-width: 400px; /* Limit width on mobile */
+            }
+        }
+
+
+        /*-----------------------------------*\
+         * #VIDEO SECTION
+        \*-----------------------------------*/
+
+        #video .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 800px; /* Limit video width */
+            margin: var(--spacing-lg) auto 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        #video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /*-----------------------------------*\
+         * #TESTIMONIALS SECTION
+        \*-----------------------------------*/
+        #testimonials {
+             background-color: var(--bg-secondary);
+        }
+         body.dark-mode #testimonials {
+             background-color: var(--bg-primary);
+         }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--accent-color);
+        }
+         body.dark-mode .testimonial-card {
+             background-color: var(--bg-secondary);
+         }
+
+        .testimonial-card blockquote {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            padding-left: var(--spacing-lg); /* Space for quote icon */
+        }
+
+        .testimonial-card blockquote::before {
+            content: '\f10d'; /* Font Awesome quote-left */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: -5px; /* Adjust position */
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            opacity: 0.5;
+        }
+
+        .testimonial-card cite {
+            font-weight: 600;
+            color: var(--heading-color);
+            display: block; /* Ensure it's on its own line */
+            margin-top: var(--spacing-md);
+        }
+
+        /*-----------------------------------*\
+         * #PRICING SECTION
+        \*-----------------------------------*/
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+            align-items: stretch; /* Make cards equal height */
+        }
+
+        .pricing-tier {
+            background-color: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column; /* Align items vertically */
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
+        }
+         body.dark-mode .pricing-tier {
+             background-color: var(--bg-secondary);
+         }
+
+        .pricing-tier:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            border-color: var(--accent-color);
+        }
+         body.dark-mode .pricing-tier:hover {
+             box-shadow: 0 15px 25px -5px rgb(99 255 218 / 0.15), 0 8px 10px -6px rgb(99 255 218 / 0.1);
+         }
+
+        .pricing-tier .tier-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .pricing-tier h3 { /* Tier Name */
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.6rem;
+        }
+
+        .tier-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tier-price span { /* "/mo" text */
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .tier-features {
+            text-align: left;
+            margin-bottom: var(--spacing-lg);
+            flex-grow: 1; /* Push button to bottom */
+        }
+
+        .tier-features li {
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .tier-features i { /* Checkmark icon */
+            color: var(--accent-color);
+            margin-right: var(--spacing-sm);
+            font-size: 0.9em; /* Slightly smaller checkmark */
+        }
+
+        .pricing-tier .cta-button {
+            margin-top: auto; /* Push button to bottom */
+            width: 100%; /* Make button full width */
+        }
+
+        /* Highlight a specific tier (e.g., "Growth") */
+        .pricing-tier.highlight {
+             border-color: var(--accent-color);
+             transform: scale(1.05); /* Make it slightly larger */
+             z-index: 10; /* Bring to front */
+        }
+        .pricing-tier.highlight:hover {
+             transform: scale(1.05) translateY(-10px); /* Combine effects */
+        }
+
+        /*-----------------------------------*\
+         * #CONTACT SECTION
+        \*-----------------------------------*/
+        #contact {
+             background-color: var(--bg-secondary);
+        }
+         body.dark-mode #contact {
+             background-color: var(--bg-primary);
+         }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: start; /* Align items to the top */
+            margin-top: var(--spacing-lg);
+        }
+
+        .contact-form h3, .calendly-widget h3 {
+            text-align: left;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color var(--transition-speed), background-color var(--transition-speed);
+        }
+         body.dark-mode .form-group input,
+         body.dark-mode .form-group textarea {
+             background-color: var(--bg-secondary); /* Adjust input background for dark mode */
+         }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3); /* Accent color focus ring */
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form .cta-button {
+            width: auto; /* Don't make submit button full width */
+            padding: var(--spacing-md) var(--spacing-lg);
+        }
+
+        /* Calendly Inline Widget Placeholder Styles */
+        .calendly-inline-widget {
+            min-height: 650px; /* Default height from Calendly */
+            border-radius: var(--border-radius);
+            overflow: hidden; /* Clip corners */
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+        /* Styles for the actual iframe when loaded */
+        .calendly-inline-widget iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 650px; /* Ensure iframe takes height */
+            border: none; /* Remove iframe border */
+        }
+
+
+        /* Responsive Contact Section */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr; /* Stack columns */
+            }
+             .calendly-widget {
+                 margin-top: var(--spacing-lg); /* Add space between form and widget */
+             }
+        }
+
+        /*-----------------------------------*\
+         * #FOOTER
+        \*-----------------------------------*/
+
+        .site-footer {
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+         body.dark-mode .site-footer {
+             background-color: var(--bg-primary); /* Match dark mode bg */
+         }
+
+        .site-footer p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /*-----------------------------------*\
+         * #BACK TO TOP BUTTON
+        \*-----------------------------------*/
+
+        .back-to-top {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: var(--button-text-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: var(--card-shadow);
+            opacity: 0; /* Hidden by default */
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity var(--transition-speed), visibility var(--transition-speed), transform var(--transition-speed), background-color var(--transition-speed);
+            z-index: 998;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-darker);
+            color: var(--button-text-color); /* Ensure text color remains */
+        }
+
+        /*-----------------------------------*\
+         * #SCROLL ANIMATIONS
+        \*-----------------------------------*/
+        /* Elements start hidden/offset */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* When the 'visible' class is added by JS */
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Add slight delays for items in grids */
+        .features-grid .feature-item:nth-child(1) { transition-delay: 0.1s; }
+        .features-grid .feature-item:nth-child(2) { transition-delay: 0.2s; }
+        .features-grid .feature-item:nth-child(3) { transition-delay: 0.3s; }
+        .features-grid .feature-item:nth-child(4) { transition-delay: 0.4s; }
+
+        .process-steps .process-step:nth-child(1) { transition-delay: 0.1s; }
+        .process-steps .process-step:nth-child(2) { transition-delay: 0.2s; }
+        .process-steps .process-step:nth-child(3) { transition-delay: 0.3s; }
+
+        .testimonials-grid .testimonial-card:nth-child(1) { transition-delay: 0.1s; }
+        .testimonials-grid .testimonial-card:nth-child(2) { transition-delay: 0.2s; }
+        .testimonials-grid .testimonial-card:nth-child(3) { transition-delay: 0.3s; }
+
+        .pricing-grid .pricing-tier:nth-child(1) { transition-delay: 0.1s; }
+        .pricing-grid .pricing-tier:nth-child(2) { transition-delay: 0.2s; }
+        .pricing-grid .pricing-tier:nth-child(3) { transition-delay: 0.3s; }
+
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="#" class="logo">Aeon<span>5</span></a>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div>
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light/dark theme">
+                    <i class="fas fa-sun"></i> </button>
+                <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1 class="animate-on-scroll">Effortless Bookkeeping for Modern Businesses</h1>
+                <p class="animate-on-scroll" style="transition-delay: 0.1s;">Stop drowning in spreadsheets. Aeon5 provides clarity and control over your finances, so you can focus on growth.</p>
+                <a href="https://calendly.com/YOUR_USERNAME/discovery" target="_blank" class="cta-button animate-on-scroll" style="transition-delay: 0.2s;">Book a Discovery Call</a>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2 class="animate-on-scroll">Why Choose Aeon5?</h2>
+                <div class="features-grid">
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Real-time Insights</h3>
+                        <p>Access up-to-date financial reports anytime, anywhere. Make informed decisions faster.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <h3>Tax Season Ready</h3>
+                        <p>Stay organized throughout the year for a stress-free tax filing experience.</p>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-headset"></i>
+                        <h3>Dedicated Support</h3>
+                        <p>Get expert help from our dedicated bookkeeping professionals when you need it.</p>
+                    </div>
+                     <div class="feature-item animate-on-scroll">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure & Reliable</h3>
+                        <p>Your financial data is protected with bank-level security and regular backups.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process">
+            <div class="container">
+                <h2 class="animate-on-scroll">Your 3-Step Financial Transformation</h2>
+                <div class="process-steps">
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number">1</div>
+                        <h3>Connect & Sync</h3>
+                        <p>Securely link your bank accounts and financial tools for automated data import.</p>
+                    </div>
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number">2</div>
+                        <h3>Reconcile & Report</h3>
+                        <p>Our experts categorize transactions, reconcile accounts, and deliver clear reports.</p>
+                    </div>
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number">3</div>
+                        <h3>Strategize & Scale</h3>
+                        <p>Gain financial clarity to optimize cash flow, plan for growth, and achieve your goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="video">
+            <div class="container">
+                <h2 class="animate-on-scroll">See How It Works</h2>
+                <div class="video-wrapper animate-on-scroll">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="container">
+                <h2 class="animate-on-scroll">What Our Clients Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card animate-on-scroll">
+                        <blockquote>Aeon5 transformed our messy finances into clear, actionable insights. We finally feel in control! Highly recommend.</blockquote>
+                        <cite>Jane Doe, CEO of Tech Innovators</cite>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll">
+                        <blockquote>The team is incredibly responsive and knowledgeable. Tax season was a breeze this year thanks to Aeon5.</blockquote>
+                        <cite>John Smith, Founder of Creative Solutions</cite>
+                    </div>
+                     <div class="testimonial-card animate-on-scroll">
+                        <blockquote>Switching to Aeon5 was the best decision for our growing business. It saved us time and gave us peace of mind.</blockquote>
+                        <cite>Alex Green, Owner of Local Bistro</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <div class="container">
+                <h2 class="animate-on-scroll">Simple, Transparent Pricing</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-tier animate-on-scroll">
+                        <i class="fas fa-seedling tier-icon"></i>
+                        <h3>Starter</h3>
+                        <div class="tier-price">$299<span>/mo</span></div>
+                        <ul class="tier-features">
+                            <li><i class="fas fa-check"></i> Up to 75 Transactions</li>
+                            <li><i class="fas fa-check"></i> Monthly Reconciliation</li>
+                            <li><i class="fas fa-check"></i> Basic Financial Reports</li>
+                            <li><i class="fas fa-check"></i> Email Support</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Get Started</a>
+                    </div>
+                    <div class="pricing-tier highlight animate-on-scroll">
+                        <i class="fas fa-rocket tier-icon"></i>
+                        <h3>Growth</h3>
+                         <div class="tier-price">$599<span>/mo</span></div>
+                        <ul class="tier-features">
+                            <li><i class="fas fa-check"></i> Up to 200 Transactions</li>
+                            <li><i class="fas fa-check"></i> Weekly Reconciliation</li>
+                            <li><i class="fas fa-check"></i> Detailed Financial Reports</li>
+                            <li><i class="fas fa-check"></i> Priority Email & Chat Support</li>
+                            <li><i class="fas fa-check"></i> Quarterly Review Call</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Choose Plan</a>
+                    </div>
+                    <div class="pricing-tier animate-on-scroll">
+                         <i class="fas fa-crown tier-icon"></i>
+                        <h3>Scale</h3>
+                         <div class="tier-price">$999+<span>/mo</span></div>
+                        <ul class="tier-features">
+                            <li><i class="fas fa-check"></i> Unlimited Transactions</li>
+                            <li><i class="fas fa-check"></i> Daily Reconciliation Option</li>
+                            <li><i class="fas fa-check"></i> Custom Reports & KPIs</li>
+                            <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+                            <li><i class="fas fa-check"></i> Monthly Strategy Call</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                 <h2 class="animate-on-scroll">Ready to Simplify Your Finances?</h2>
+                <div class="contact-container">
+                    <div class="contact-form animate-on-scroll">
+                        <h3>Send Us a Message</h3>
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="cta-button">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="calendly-widget animate-on-scroll" style="transition-delay: 0.1s;">
+                         <h3>Book Your Discovery Call</h3>
+                        <div class="calendly-inline-widget"
+                             data-url="https://calendly.com/YOUR_USERNAME/discovery?hide_event_type_details=1&hide_gdpr_banner=1"
+                             style="min-width:320px;height:700px;"
+                             data-auto-load="false">
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Aeon5 Bookkeeping. All rights reserved.</p>
+            </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Elements ---
+            const body = document.body;
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mainNav = document.getElementById('main-nav');
+            const backToTopBtn = document.getElementById('back-to-top');
+            const currentYearSpan = document.getElementById('current-year');
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const navLinks = document.querySelectorAll('.main-nav a');
+            const calendlyWidgetDiv = document.querySelector('.calendly-inline-widget[data-url]');
+
+            // --- Theme Toggler ---
+            const currentTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Function to apply theme
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light
+                    localStorage.setItem('theme', 'light');
+                }
+                // Attempt to update Calendly theme after applying site theme
+                updateCalendlyTheme(theme);
+            };
+
+            // Initialize theme
+            if (currentTheme) {
+                applyTheme(currentTheme);
+            } else {
+                // Apply preferred scheme if no setting saved
+                applyTheme(prefersDark ? 'dark' : 'light');
+            }
+
+            // Theme toggle button event
+            themeToggleBtn.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+
+            // --- Mobile Navigation ---
+            mobileNavToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                const isExpanded = mainNav.classList.contains('active');
+                mobileNavToggle.setAttribute('aria-expanded', isExpanded);
+                // Toggle hamburger/close icon
+                mobileNavToggle.innerHTML = isExpanded ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+             // Close mobile nav when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileNavToggle.setAttribute('aria-expanded', 'false');
+                        mobileNavToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+
+
+            // --- Back to Top Button ---
+            const toggleBackToTop = () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            };
+
+            window.addEventListener('scroll', toggleBackToTop);
+            // Initial check in case page loads scrolled down
+            toggleBackToTop();
+
+            // --- Scroll Animations ---
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // trigger when 10% of the element is visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            };
+
+            const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+            animatedElements.forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // --- Footer Current Year ---
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            // --- Calendly Theme Sync & Initialization ---
+            function updateCalendlyTheme(theme) {
+                if (!calendlyWidgetDiv || !window.Calendly) return; // Ensure widget div and Calendly script exist
+
+                const baseUrl = calendlyWidgetDiv.getAttribute('data-url').split('?')[0];
+                let params = new URLSearchParams(calendlyWidgetDiv.getAttribute('data-url').split('?')[1] || '');
+
+                // Example theme parameters (CHECK CALENDLY DOCS FOR ACCURACY)
+                const lightThemeParams = {
+                    // background_color: 'ffffff', // White
+                    // text_color: '334155',       // Dark Slate
+                    // primary_color: '64ffda'     // Neon Green
+                };
+                const darkThemeParams = {
+                    // background_color: '0a192f', // Navy
+                    // text_color: 'f8f8f8',       // Light Gray
+                    // primary_color: '64ffda'     // Neon Green
+                };
+
+                const themeParams = (theme === 'dark') ? darkThemeParams : lightThemeParams;
+
+                // Set theme parameters (only if they exist - check Calendly docs)
+                // for (const key in themeParams) {
+                //     params.set(key, themeParams[key]);
+                // }
+
+                const newUrl = `${baseUrl}?${params.toString()}`;
+
+                // Check if widget is already initialized
+                 if (calendlyWidgetDiv.querySelector('iframe')) {
+                     // If already loaded, we might need to destroy and reinitialize
+                     // This can cause a flicker. Check Calendly API for better methods if available.
+                     console.warn("Calendly widget already loaded. Re-initializing for theme change (may flicker).");
+                     calendlyWidgetDiv.innerHTML = ''; // Clear previous iframe
+                     window.Calendly.initInlineWidget({
+                         url: newUrl,
+                         parentElement: calendlyWidgetDiv
+                     });
+                 } else {
+                     // If not loaded yet, just update the URL before init
+                     calendlyWidgetDiv.setAttribute('data-url', newUrl);
+                     // Now initialize it if it wasn't auto-loaded
+                     if (calendlyWidgetDiv.getAttribute('data-auto-load') === 'false') {
+                          window.Calendly.initInlineWidget({
+                             url: newUrl,
+                             parentElement: calendlyWidgetDiv
+                         });
+                     }
+                 }
+            }
+
+             // Initial Calendly load (respecting data-auto-load="false")
+             if (calendlyWidgetDiv && calendlyWidgetDiv.getAttribute('data-auto-load') === 'false') {
+                 // We call updateCalendlyTheme initially to set the correct URL before the first load
+                 const initialTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                 updateCalendlyTheme(initialTheme); // This will also trigger initInlineWidget
+             } else if (calendlyWidgetDiv) {
+                 // If auto-load is true or not set, Calendly's script handles initial load.
+                 // We might still want to try updating the theme immediately after load,
+                 // but this requires careful timing or listening for Calendly events.
+                 // For simplicity, we'll rely on the theme toggle button click for updates.
+                 console.log("Calendly set to auto-load. Theme sync will apply on toggle.");
+             }
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
+
